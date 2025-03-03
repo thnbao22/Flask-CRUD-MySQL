@@ -4,18 +4,17 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import pymysql
 
-# Cấu hình PyMySQL để sử dụng với Flask-SQLAlchemy
+
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 Scss(app)
 
-# Cập nhật URI kết nối đến MySQL
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:password123@localhost/todo_app"  # Thay đổi theo thông tin của bạn
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:ABC123456789@localhost:3306/flaskcontactsapp"  # Thay đổi theo thông tin của bạn
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
-    """A Model for an Item in the Todo List
+    """A Model for an Item in the Todo List 
 
     Args:
         db (_type_): database model
@@ -94,5 +93,5 @@ def update(id):
 
 if __name__ == "__main__":
     with app.app_context():
-        db.create_all()  # Tạo bảng trong MySQL
-    app.run(debug=True)
+        db.create_all()  
+    app.run(debug=True, host='0.0.0.0', port=5000)
